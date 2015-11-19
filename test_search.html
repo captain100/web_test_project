@@ -1,5 +1,6 @@
 <html>
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<title>页面的搜索功能</title>
 </head>
 <body>
@@ -29,6 +30,7 @@
 	<div class="search-box">
 		<input  id='shuru' type="text" value="搜索" oninput="searchInput()" onfocus="clearValue()" >
 	</div>
+	<div id="showlist"></div>
 	<script type="text/javascript">
 	var aa =[{
 		name:'北京市'
@@ -45,11 +47,13 @@
 	function searchInput()
 	{
 		var shuru = document.getElementById('shuru');
+		var lists = document.getElementById('showlist');
 		var show = [];
 		
 		// console.log(shuru.value);
 		checkout(shuru.value);
 		console.log(show);
+		showList(show);
 		
 		function checkout(str){
 			for(var i=0 ; i<aa.length; i++){
@@ -60,6 +64,16 @@
 					console.log(aa[i]);
 				}
 			}
+		}
+		function showList (list) 
+		{
+			var listpage = document.createElement("ul");
+			for(var i = 0 ; i< list.length; i++){
+				var obj = document.createElement("li");
+				obj.innerHTML = list[i].name;
+				listpage.appendChild(obj);
+			}
+			lists.appendChild(listpage);
 
 		}
 
