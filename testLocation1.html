@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>浏览器定位</title>
+</head>
+<body>
+    <script>
+        window.onload = function(){
+            function getLocation(){
+                navigator.geolocation.getCurrentPosition(currentCoordinate,onError);
+            }
+            function currentCoordinate(position){
+
+                alert(position.coords.latitude+','+position.coords.longitude);
+
+            }
+            function onError(data){
+                console.log(data);
+                switch (data.code) {
+                    case 1:
+                        alert('浏览器阻止了定位操作');
+                        break;
+                    case 2:
+                        alert('无法获得当前位置');
+                        break;
+                    case 3:
+                        alert('定位超时');
+                        break;
+                    default:
+                        alert('未知错误');
+                        break;
+                }
+            }
+            getLocation();
+
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<style>
+    /*a  upload */
+    .a-upload {
+        padding: 4px 10px;
+        height: 20px;
+        line-height: 20px;
+        position: relative;
+        cursor: pointer;
+        color: #888;
+        background: #fafafa;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        overflow: hidden;
+        display: inline-block;
+        *display: inline;
+        *zoom: 1
+    }
+
+    .a-upload  input {
+        position: absolute;
+        font-size: 100px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        cursor: pointer
+    }
+
+    .a-upload:hover {
+        color: #444;
+        background: #eee;
+        border-color: #ccc;
+        text-decoration: none
+    }
+    .file {
+        position: relative;
+        display: inline-block;
+        background: #D0EEFF;
+        border: 1px solid #99D3F5;
+        border-radius: 4px;
+        padding: 4px 12px;
+        overflow: hidden;
+        color: #1E88C7;
+        text-decoration: none;
+        text-indent: 0;
+        line-height: 20px;
+    }
+    .file input {
+        position: absolute;
+        font-size: 100px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+        width: 100px;
+    }
+    .file:hover {
+        background: #AADFFD;
+        border-color: #78C3F3;
+        color: #004974;
+        text-decoration: none;
+    }
+    .inputFile{
+        position:relative;
+        display:inline-block;
+        background: #ddd;
+        border: 0px;
+        width: 200px;
+        height: 30px;
+        color: rgba(233,0,0,0.4);
+        text-decoration: none;
+        text-indent: 0;
+        line-height: 20px;
+    }
+    .inputFile input {
+        position: absolute;
+        font-size: 15px;
+        margin: 0px;
+        left: 0;
+        top: 0;
+        width:200px;
+        height: 30px;
+        background-color: rgba(34,54,23,0.7);
+        opacity: 0;
+        filter: alpha(opacity=0);
+        cursor: pointer;
+    }
+    .inputFile .btn{
+        position: absolute;
+        display: block;
+        margin: 0px;
+        top: 0;
+        right: 0;
+        height: 30px;
+        width: auto;
+        border: 1px solid rgba(244,0,0,0.8);
+        -webkit-border-radius: 10px;
+        -moz-border-radius:10px ;
+        border-radius:10px ;
+        padding: 2px 20px;
+    }
+    .search{
+        position: relative;
+        display: inline-block;
+        background: #999;
+        width: 300px;
+        line-height:20px ;
+        text-indent: 0;
+        text-decoration: none;
+    }
+    .search .search-input{
+        position: relative;
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 80%;
+        border-radius: 50px;
+        text-align: center;
+        line-height: 20px;
+        border: 0px;
+
+    }
+
+
+</style>
+<a href="javascript:;" class="a-upload">
+    <input type="file" name="" id="">点击这里上传文件
+</a>
+
+<a href="javascript:;" class="file">选择文件
+    <input type="file">
+</a>
+<br>
+<a href="javascript:;"class="inputFile">
+    <input type="file">
+    <div class="btn">添加文件</div>
+</a>
+<br>
+<a href="javascript:;" class="search">
+    <input type="text" class="search-input" value="🔍输入城市名">
+</a>
+
+</body>
+</html>

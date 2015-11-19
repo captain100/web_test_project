@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>手机版轮播图</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .banner {
+            overflow: hidden;
+            position: relative;
+        }
+        .banner_list {
+            overflow: hidden;
+        }
+        .banner_list li {
+            float: left;
+        }
+        .banner_list img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+<script>
+    var banner = {
+        init: function () {
+            var oBanner = document.getElementById('bannerBox');
+            banner.olist = document.getElementById('bannerList');
+//            banner.arrNav = oBanner.getElementsByTagName('nav')[0].children;
+            var arrList = banner.olist.getElementsByTagName('li');
+            banner.iCount = arrList.length;
+            banner.iw = banner.view().w;//获取屏幕的宽度
+            console.log(banner.iw)
+            banner.autotime = 2000;
+            banner.iNow = 0;
+            banner.iX = 0;
+            banner.iStartX = 0;
+            banner.oTimer = null;
+            banner.iStartTouchX = 0;
+
+            banner.olist.style.width = banner.iw * banner.iCount + 'px';
+            oBanner.style.height = banner.olist.style.height = banner.iw / 72 * 26 + 'px';
+            for (var i = 0; i < banner.iCount; i++) {
+                arrList[i].style.width = banner.iw+'px';
+                arrList[i].style.height = banner.iw / 72 * 26 + 'px';
+            }
+//            for (var j = 0; j < banner.iCount; j++) {
+//                banner.arrNav[j].index = j;
+//                banner.bind(banner.arrNav[j], 'click', banner.clickHandler);
+//            }
+            //绑定移动端事件
+//            banner.bind(oBanner, 'touchstart', banner.touchStartHandler);
+//            banner.bind(oBanner, 'touchmove', banner.touchMoveHandler);
+//            banner.bind(oBanner, 'touchend', banner.touchEndHandler);
+            banner.auto();
+        },
+
+        view: function () {
+            return {
+                w: window.screen.availWidth,
+                h: window.screen.availHeight
+            }
+        },
+        clickHandler: function () {
+            clearInterval(banner.oTimer);
+            banner.inow = this.index;
+            banner.slide();
+            banner.auto();
+        },
+        slide: function () {
+            banner.iX = - banner.iNow * banner.iw;
+            banner.olist.style.transition = '0.5s';
+            banner.olist.style.WebkitTransform
+                    = banner.olist.style.transform
+                    = 'translateX(' + banner.iX + 'px)';
+        },
+        auto: function () {
+            banner.oTimer = setInterval(function () {
+                banner.iNow++;
+                banner.iNow = banner.iNow % banner.iCount;
+                banner.slide();
+            }, banner.autotime);
+        }
+    }
+    window.onload = function () {
+        banner.init();
+    }
+
+
+</script>
+
+
+<div class="banner" id="bannerBox">
+    <ul class="banner_list" id="bannerList">
+        <li><img src="img/1.jpg"/></li>
+        <li><img src="img/2.jpg"/></li>
+        <li><img src="img/3.jpg"/></li>
+        <li><img src="img/4.jpg"/></li>
+        <li><img src="img/5.jpg"/></li>
+    </ul>
+    <!--<div class="banner_mask">-->
+        <!--<nav class="banner_nav">-->
+            <!--<li href="javascript:;" class="active"></li>-->
+            <!--<li href="javascript:;"></li>-->
+            <!--<li href="javascript:;"></li>-->
+            <!--<li href="javascript:;"></li>-->
+            <!--<li href="javascript:;"></li>-->
+        <!--</nav>-->
+    <!--</div>-->
+</div>
+
+
+</body>
+</html>
