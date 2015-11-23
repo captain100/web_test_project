@@ -1,0 +1,26 @@
+<html>
+<head>
+	<title>事件绑定写法</title>
+</head>
+<body>
+	<button id="btn-alert">弹出窗口</button>
+<script type="text/javascript">
+
+
+	var handle = {
+		message:'event message',
+		handleClick:function(event){
+			alert(this.message+' : '+event.type);
+		}
+
+	}
+	window.onload = function(){
+		var btn = document.getElementById('btn-alert');
+		var EventUtil = new Object;
+		EventUtil.addHandler(btn,'click',handle.handleClick.bind(handle))
+	}
+
+</script>
+
+</body>
+</html>
