@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>鼠标移动事件</title>
+</head>
+<body>
+	<img id="imgchangeStyle" src="images/-__(10).jpg">
+	<script type="text/javascript">
+		window.onload = function(){
+			var imgChangeStyle = document.getElementById('imgchangeStyle'),
+			setCss = function(_this,cssOption){
+
+				if(!_this||_this.nodeType === 3 ||_this.nodeType === 8 ||!_this.style){
+					console.log(_this.nodeType)
+					return ;
+				}
+				for(var cs in cssOption){
+					_this.style[cs] = cssOption[cs];
+				}
+				return _this;
+			};
+
+			imgchangeStyle.addEventListener('click',function(event){
+				alert(1111)
+				setCss(this,{ "border-radius": "50px"})
+			})
+			imgchangeStyle.addEventListener('mouseover',function(event){
+				setCss(this,{
+					"border-radius":"20px",
+					"border":"1px solid rgba(2,255,23,0)"
+
+				})
+			});
+			imgchangeStyle.addEventListener('mouseout',function(event){
+				setCss(this,{
+					"border":"1px solid rgba(2,255,23,0.7)"
+				})
+			})
+		}
+	</script>
+
+</body>
+</html>
