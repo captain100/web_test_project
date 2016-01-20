@@ -5,4 +5,7 @@
 ###轮播图    lunbotu.html
 ###相片墙    photowall.html
 ###页面动态检索    test_search.html
+###文件上传    file.html
+###拖拽图片  dragPicture.html
+###动画时间管理 animateManager.html animateManager.js
 

@@ -1,24 +1,135 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<title>事件绑定写法</title>
 </head>
 <body>
-	<button id="btn-alert">弹出窗口</button>
+	<!-- <button id="btn-alert">弹出窗口</button> -->
+	<!-- <div id="myDiv" style="background-color:rgba(4,4,4,0.7);width:200px;height:200px;"></div> -->
+	<div class="draggable" style="position:absolute;width:100px;height:100px;background:red;" >
+	</div>
 <script type="text/javascript">
+var EventUtil = {
+    addHandler: function (element, type, handler) {
+        if (element.addEventListener) {
+            element.addEventListener(type, handler, false);
+        } else if (element.attachEvent) {
+            element.attachEvent("on" + type, handler);
+        } else {
+            element["on" + type] = handler;
+        }
+    },
+    removeHandler: function (element, type, handler) {
+        if (element.removeEventListener) {
+            element.removeEventListener(type, handler, false);
+        } else if (element.detachEvent) {
+            element.detachEvent("on" + type, handler);
+        } else {
+            element["on" + type] = null;
+        }
+    },
 
+    getEvent: function (event) {
+        return event ? event : window.event;
+    },
+    getTarget: function (event) {
+        return event.target || event.srcElement;
+    },
+    preventDefault: function (event) {
+        if (event.preventDefault) {
+            event.preventDefault();
+        } else {
+            event.returnValue = false;
+        }
+    },
+    stopPropagation: function (event) {
+        if (event.stopPropagation) {
+            event.stopPropagation();
+        } else {
+            event.cancelBubbles = true;
+        }
+    },
+    getRelatedTarget: function (event) {
+        if (event.relatedTarger) {
+            return event.relatedTarget;
+        } else if (event.toElement) {
+            return event.toElement;
+        } else if (event.fromElement) {
+            return event.fromElement;
+        } else { return null; }
 
-	var handle = {
-		message:'event message',
-		handleClick:function(event){
-			alert(this.message+' : '+event.type);
+    }
+};
+
+var handle = {
+	message:'event message',
+	handleClick:function(event){
+		alert(this.message+' : '+event.type);
+	}
+};
+var dragdrop = function(){
+	var draging = null;
+	function handleEvent(event){
+		event = EventUtil.getEvent(event);
+		var target = EventUtil.getTarget(event);
+		switch(event.type){
+			case "mousedown":
+			if (target.className.indexOf('draggable') > -1){
+				draging = target;
+			};
+			break;
+			case "mouseover":
+			if(draging !== null){
+				draging.style.top = event.clientY+"px";
+				draging.style.left = event.clientX+"px";
+			}
+			break;
+			case "mouseup" :
+			draging = null;
+			break;
 		}
+		
+	};
+	return {
+			enable:function(){
+				EventUtil.addHandler(document,"mousedown",handleEvent);
+				EventUtil.addHandler(document,"mouseover",handleEvent);
+				EventUtil.addHandler(document,"mouseup",handleEvent);
+			},
+			disable:function(){
+				EventUtil.removeHandler(document,"mousedown",handleEvent);
+				EventUtil.removeHandler(document,"mouseover",handleEvent);
+				EventUtil.removeHandler(document,"mouseup",handleEvent);
+			}
+		}
+}();
 
-	}
-	window.onload = function(){
-		var btn = document.getElementById('btn-alert');
-		var EventUtil = new Object;
-		EventUtil.addHandler(btn,'click',handle.handleClick.bind(handle))
-	}
+
+
+
+window.onload = function(){
+	// var btn = document.getElementById('btn-alert');
+	dragdrop.enable();
+	dragdrop.disable();
+
+
+	// EventUtil.addHandler(btn,'click',function(event){
+	// 	handle.handleClick(event)
+	// });
+
+	// EventUtil.addHandler(document,'mouseover',function(event){
+	// 	console.log(event)
+	// 	var myDiv = document.getElementById('myDiv');
+	// 	myDiv.style.top = event.clientY+"px";
+	// 	myDiv.style.left = event.clientX+"px";
+	// });
+
+	// console.log(EventUtil.getEvent());
+
+
+
+
+}
 
 </script>
 

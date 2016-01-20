@@ -1,0 +1,41 @@
+<html>
+<head>
+	<title>生成验证码</title>
+</head>
+<body>
+	<script type="text/javascript">
+	var code;
+	function createCode(){
+
+		code = "";
+		var codeLength = 6 ;
+		var checkCode = document.getElementById('yanzhengma');
+		var random = new Array(0,1,2,3,4,5,6,7,8,9,0,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
+		for(var i = 0;i<codeLength;i++){
+			var index = Math.floor(Math.random()*36);
+			code +=random[index];
+		}
+		console.log(code);
+		checkCode.value = code;
+	}
+	function validate(){
+		var valicode = document.getElementById('jiaoyan');
+		if(valicode.value == code){
+			alert('检验相等');
+		}else{
+			alert('not equal')
+		}
+	}
+
+
+	</script>
+	<div>生成的验证码:	
+		<input type='text' id="yanzhengma">
+		<button onclick="createCode()">生成</button>
+	</div>
+	<div>校验验证码:
+		<input type="text" id="jiaoyan">
+		<button onclick="validate()">校验</button>
+	</div>
+</body>
+</html>

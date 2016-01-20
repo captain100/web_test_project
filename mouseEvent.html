@@ -7,8 +7,11 @@
 	<img id="imgchangeStyle" src="images/-__(10).jpg">
 	<script type="text/javascript">
 		window.onload = function(){
-			var imgChangeStyle = document.getElementById('imgchangeStyle'),
-			setCss = function(_this,cssOption){
+			var imgChangeStyle = document.getElementById('imgchangeStyle');
+			/*
+			修改对象的CSS样式的函数
+			*/
+			var setCss = function(_this,cssOption){
 
 				if(!_this||_this.nodeType === 3 ||_this.nodeType === 8 ||!_this.style){
 					console.log(_this.nodeType)
