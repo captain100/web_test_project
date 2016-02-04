@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="locationDiv" style="display: none; position: absolute; top: 100; left: 50"
+     onclick="javascript:HideLocation();">
+    <img id="locationImg" src="http://kloc.pm/images/back.png" alt=""></img>
+</div>
+<img src="http://kloc.pm/images/back.png" border="0" alt="" onload="javascript:DrawImage(this,30,30) ;"
+     onclick="javascript:ShowLocation(this,890,1090);"/>
+<script language="JavaScript">
+    var flag = false;
+
+    function ShowLocation(ImgD, imageWidth, imageHeight) {
+        var mDiv = document.getElementById('locationDiv');
+        var mImg = document.getElementById('locationImg');
+        mDiv.style.display = 'block';
+        mDiv.style.top = 100;
+        mDiv.style.left = 50;
+        mDiv.style.width = imageWidth + 'px';
+        mDiv.style.height = imageHeight + 'px';
+        mImg.src = ImgD.src;
+    }
+    function HideLocation() {
+        var mDiv = document.getElementById('locationDiv');
+        mDiv.style.display = 'none';
+    }
+    function DrawImage(ImgD, imageWidth, imageHeight) {
+        var image = new Image();
+        image.src = ImgD.src;
+        if (image.width > 0 && image.height > 0) {
+            flag = true;
+            if (image.width / image.height >= imageWidth / imageHeight) {
+                if (image.width > imageWidth) {
+                    ImgD.width = imageWidth;
+                    ImgD.height = (image.height * imageWidth) / image.width;
+                } else {
+                    ImgD.width = image.width;
+                    ImgD.height = image.height;
+                }
+            }
+            else {
+                if (image.height > imageHeight) {
+                    ImgD.height = imageHeight;
+                    ImgD.width = (image.width * imageHeight) / image.height;
+                } else {
+                    ImgD.width = image.width;
+                    ImgD.height = image.height;
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

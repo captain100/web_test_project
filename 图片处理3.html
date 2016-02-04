@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+    function createImg(){
+        var img = new Image();
+        img.src = "http://kloc.pm/images/back.png";
+        img.onload =function(){
+            console.log(img.width,img.height);
+            img.style.display = 'block';
+            img.style.width = img.width * 320 /img.height +'px' ;
+
+        }
+        var showDiv = document.createElement('div');
+        showDiv.style.display = 'block';
+        showDiv.style.width = "80px";
+        showDiv.style.height = "80px";
+        showDiv.style.overflow = "hidden";
+        showDiv.style.border = "4px solid #CCC";
+        showDiv.style.position = "absolute";
+
+        showDiv.appendChild(img);
+
+        document.body.appendChild(showDiv);
+
+    }
+
+    createImg();
+
+
+</script>
+</body>
+</html>

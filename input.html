@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="text" id="input_1" /><br>
+<input type="text" id="input_2" /><br>
+<input type="text" id="input_3" /><br>
+<input type="text" id="input_4" /><br>
+<input type="text" id="input_5" /><br>
+<input type="text" id="input_6" /><br>
+<input type="button" id="input_btn" value="点击"/>
+<script>
+    window.onload = function(){
+        var btn = document.getElementById('input_btn');
+        btn.onclick = function(){
+            var str = document.getElementById('input_1').value;
+            for(var i =2 ;i<7;i++){
+                document.getElementById('input_'+i).value =str;
+            }
+
+        }
+    }
+
+</script>
+
+
+</body>
+</html>
